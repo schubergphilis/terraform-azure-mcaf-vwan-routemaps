@@ -5,7 +5,7 @@ variable "route_maps" {
     virtual_hub_id = string
     rules = optional(list(object({
       name                 = string
-      next_step_if_matched = optional(string, "Unknown")
+      next_step_if_matched = optional(string)
       action = optional(object({
         type = string
         parameter = optional(object({
