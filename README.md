@@ -68,3 +68,40 @@ module "route_map" {
 ## License
 
 Licensed under the Apache License, Version 2.0 (the "License").
+
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.7 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 4 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | ~> 4 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [azurerm_route_map.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/route_map) | resource |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_route_maps"></a> [route\_maps](#input\_route\_maps) | A map of route maps to create | <pre>map(object({<br/>    name           = string<br/>    virtual_hub_id = string<br/>    rules = optional(list(object({<br/>      name                 = string<br/>      next_step_if_matched = optional(string, "Unknown")<br/>      action = optional(object({<br/>        type = string<br/>        parameter = optional(object({<br/>          as_path      = optional(list(string))<br/>          community    = optional(list(string))<br/>          route_prefix = optional(list(string))<br/>        }))<br/>      }))<br/>      match_criterion = optional(object({<br/>        match_condition = string<br/>        as_path         = optional(list(string))<br/>        community       = optional(list(string))<br/>        route_prefix    = optional(list(string))<br/>      }))<br/>    })), [])<br/>  }))</pre> | `{}` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| <a name="output_route_map_ids"></a> [route\_map\_ids](#output\_route\_map\_ids) | The IDs of the route maps that were created |
+<!-- END_TF_DOCS -->
