@@ -13,19 +13,13 @@ provider "azurerm" {
   features {}
 }
 
-# Example virtual hub (assuming it exists)
-data "azurerm_virtual_hub" "example" {
-  name                = "example-vhub"
-  resource_group_name = "example-resources"
-}
-
 module "route_map" {
   source = "../.."
 
   route_maps = {
     example = {
       name           = "example-rm"
-      virtual_hub_id = data.azurerm_virtual_hub.example.id
+      virtual_hub_id = "Resource ID of your Virtual Hub"
       rules = [
         {
           name                 = "rule1"
@@ -38,7 +32,7 @@ module "route_map" {
           }
           match_criterion = {
             match_condition = "Contains"
-            route_prefix    = ["10.0.0.0/8"]
+            route_prefix    = ["10.1.0.0/24"]
           }
         }
       ]
